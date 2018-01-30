@@ -31,12 +31,11 @@
 
 package com.raywenderlich.android.roomword
 
-import android.app.Application
 import android.arch.lifecycle.LiveData
 import android.os.AsyncTask
 
 
-class WordRepository(application: Application) {
+class WordRepository {
   private val wordDao: WordDao = WordApplication.database.wordDao()
   private val allWords: LiveData<List<Word>>
 
@@ -46,7 +45,7 @@ class WordRepository(application: Application) {
 
   fun getAllWords() = allWords
 
-  fun insert(word: Word) = InsertAsyncTask(wordDao).execute(word)
+  fun insert(word: Word): AsyncTask<Word, Void, Void> = InsertAsyncTask(wordDao).execute(word)
 
   private class InsertAsyncTask internal constructor(private val dao: WordDao) : AsyncTask<Word, Void, Void>() {
 
