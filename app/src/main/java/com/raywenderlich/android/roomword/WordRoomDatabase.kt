@@ -39,6 +39,8 @@ import android.content.Context
 @Database(entities = [Word::class], version = 1)
 abstract class WordRoomDatabase : RoomDatabase() {
 
+  abstract fun wordDao(): WordDao
+
   companion object {
     var INSTANCE: WordRoomDatabase? = null
 
