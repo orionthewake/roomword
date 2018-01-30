@@ -31,11 +31,28 @@
 
 package com.raywenderlich.android.roomword
 
-import android.arch.persistence.room.Database
-import android.arch.persistence.room.RoomDatabase
+import android.app.Application
+import android.arch.lifecycle.LiveData
+import android.os.AsyncTask
 
-@Database(entities = [Word::class], version = 1)
-abstract class WordRoomDatabase : RoomDatabase() {
 
-  abstract fun wordDao(): WordDao
+class WordRepository(application: Application) {
+  private val wordDao: WordDao = WordApplication.database.wordDao()
+  private val allWords: LiveData<List<Word>>
+
+  init {
+    allWords = wordDao.getAllWords()
+  }
+
+  fun getAllWords() = allWords
+
+  fun insert(word: Word) = InsertAsyncTask(wordDao).execute(word)
+
+  private class InsertAsyncTask internal constructor(private val dao: WordDao) : AsyncTask<Word, Void, Void>() {
+
+    override fun doInBackground(vararg params: Word): Void? {
+      dao.insert(params[0])
+      return null
+    }
+  }
 }

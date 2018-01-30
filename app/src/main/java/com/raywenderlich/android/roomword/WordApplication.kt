@@ -31,11 +31,19 @@
 
 package com.raywenderlich.android.roomword
 
-import android.arch.persistence.room.Database
-import android.arch.persistence.room.RoomDatabase
+import android.app.Application
+import android.arch.persistence.room.Room
 
-@Database(entities = [Word::class], version = 1)
-abstract class WordRoomDatabase : RoomDatabase() {
 
-  abstract fun wordDao(): WordDao
+class WordApplication : Application() {
+
+  companion object {
+    lateinit var database: WordRoomDatabase
+  }
+
+  override fun onCreate() {
+    super.onCreate()
+
+    database = Room.databaseBuilder(this, WordRoomDatabase::class.java, "word_database").build()
+  }
 }
