@@ -1,10 +1,9 @@
-package com.raywenderlich.android.roomword
+package com.raywenderlich.android.roomword.ui
 
 import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
@@ -14,7 +13,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import android.widget.Toast
 import android.content.Intent
-
+import com.raywenderlich.android.roomword.R
+import com.raywenderlich.android.roomword.model.Word
 
 
 class MainActivity : AppCompatActivity() {

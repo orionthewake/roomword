@@ -1,4 +1,4 @@
-package com.raywenderlich.android.roomword
+package com.raywenderlich.android.roomword.ui
 
 import android.app.Activity
 import android.content.Intent
@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
+import com.raywenderlich.android.roomword.R
 
 
 class NewWordActivity : AppCompatActivity() {

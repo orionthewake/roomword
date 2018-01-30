@@ -36,6 +36,9 @@ import android.arch.persistence.db.SupportSQLiteDatabase
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.os.AsyncTask
+import com.raywenderlich.android.roomword.model.Word
+import com.raywenderlich.android.roomword.model.WordDao
+import com.raywenderlich.android.roomword.model.WordRoomDatabase
 
 
 class WordApplication : Application() {

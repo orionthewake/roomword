@@ -29,29 +29,10 @@
  *
  */
 
-package com.raywenderlich.android.roomword
+package com.raywenderlich.android.roomword.model
 
-import android.arch.lifecycle.LiveData
-import android.os.AsyncTask
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 
-
-class WordRepository {
-  private val wordDao: WordDao = WordApplication.database.wordDao()
-  private val allWords: LiveData<List<Word>>
-
-  init {
-    allWords = wordDao.getAllWords()
-  }
-
-  fun getAllWords() = allWords
-
-  fun insert(word: Word): AsyncTask<Word, Void, Void> = InsertAsyncTask(wordDao).execute(word)
-
-  private class InsertAsyncTask internal constructor(private val dao: WordDao) : AsyncTask<Word, Void, Void>() {
-
-    override fun doInBackground(vararg params: Word): Void? {
-      dao.insert(params[0])
-      return null
-    }
-  }
-}
+@Entity(tableName = "word_table")
+class Word(@PrimaryKey val word: String)

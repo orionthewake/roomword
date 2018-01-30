@@ -29,7 +29,7 @@
  *
  */
 
-package com.raywenderlich.android.roomword
+package com.raywenderlich.android.roomword.ui
 
 import android.content.Context
 import android.view.ViewGroup
@@ -37,6 +37,8 @@ import android.view.LayoutInflater
 import android.widget.TextView
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import com.raywenderlich.android.roomword.R
+import com.raywenderlich.android.roomword.model.Word
 
 
 class WordListAdapter internal constructor(context: Context) : RecyclerView.Adapter<WordListAdapter.WordViewHolder>() {

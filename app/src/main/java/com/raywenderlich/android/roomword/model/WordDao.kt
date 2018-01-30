@@ -29,17 +29,22 @@
  *
  */
 
-package com.raywenderlich.android.roomword
+package com.raywenderlich.android.roomword.model
 
-import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
+import android.arch.lifecycle.LiveData
+import android.arch.persistence.room.Dao
+import android.arch.persistence.room.Insert
+import android.arch.persistence.room.Query
 
+@Dao
+interface WordDao {
 
-class WordViewModel(application: Application) : AndroidViewModel(application) {
-  private val repository = WordRepository()
-  private val allWords = repository.getAllWords()
+  @Insert
+  fun insert(word: Word)
 
-  fun getAllWords() = allWords
+  @Query("DELETE FROM word_table")
+  fun deleteAll()
 
-  fun insert(word: Word) = repository.insert(word)
+  @Query("SELECT * FROM word_table ORDER BY word ASC")
+  fun getAllWords(): LiveData<List<Word>>
 }
